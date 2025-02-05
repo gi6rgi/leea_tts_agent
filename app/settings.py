@@ -6,6 +6,7 @@ class Settings(BaseSettings):
     app_description: str = "This agent receives text input and generates audio"
     leea_api_key: str
     eleven_labs_api_key: str
+    wallet_path: str | None = None
 
     class Config:
         env_file = ".env"
