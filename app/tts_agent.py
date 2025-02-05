@@ -1,3 +1,5 @@
+from typing import Type
+
 from elevenlabs.client import ElevenLabs
 from leea_agent_sdk.agent import Agent
 
@@ -11,10 +13,10 @@ tts_service = TTSService(client=tts_client)
 
 
 class TTSAgent(Agent):
-    name = settings.app_name
-    description = settings.app_description
-    input_schema = Input
-    output_schema = Output
+    name: str = settings.app_name
+    description: str = settings.app_description
+    input_schema: Type[Input] = Input
+    output_schema: Type[Output] = Output
 
     async def run(self, request_id: str, input_: Input) -> Output:
         self.push_log(f"Received request_id: {request_id}")
