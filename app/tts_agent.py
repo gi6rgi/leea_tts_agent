@@ -19,12 +19,12 @@ class TTSAgent(Agent):
     output_schema: Type[Output] = Output
 
     async def run(self, request_id: str, input_: Input) -> Output:
-        await self.push_log(request_id=request_id, message=f"Received request_id: {request_id}")
+        # await self.push_log(request_id=request_id, message=f"Received request_id: {request_id}")
 
         # TODO: ask about bytes streaming.
         audio_bytes = b""
         async for chunk in tts_service.text_to_speech(text=input_.text):
             audio_bytes += chunk
 
-        await self.push_log(request_id=request_id, message=f"request_id: {request_id} has been processed")
+        # await self.push_log(request_id=request_id, message=f"request_id: {request_id} has been processed")
         return Output(audio_bytes=audio_bytes)
